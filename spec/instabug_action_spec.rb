@@ -36,7 +36,7 @@ describe Fastlane::Actions::InstabugAction do
         Actions.lane_context[SharedValues::DSYM_OUTPUT_PATH] = '#{dsym_path}'
         instabug(api_token: 'fake_token')
       end").runner.execute(:test)
-      expect(result).to include('-F token="fake_token"')
+      expect(result).to include('-F application_token="fake_token"')
     end
 
     it 'should make requests to Instabug dSYM endpoint' do
@@ -45,7 +45,7 @@ describe Fastlane::Actions::InstabugAction do
         Actions.lane_context[SharedValues::DSYM_OUTPUT_PATH] = '#{dsym_path}'
         instabug(api_token: 'fake_token')
       end").runner.execute(:test)
-      expect(result).to include('curl https://api.instabug.com/api/ios/v1/dsym')
+      expect(result).to include('curl https://api.instabug.com/api/sdk/v3/symbols_files')
     end
 
     it 'should zip dSYM automatically if it is not zipped already' do
